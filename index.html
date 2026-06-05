@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한일 여행 프로젝트 운영 매뉴얼</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* 1. THE SETUP */
+        * { box-sizing: border-box; }
+        body { background-color: #0b1121; display: grid; gap: 40px; grid-template-columns: 1fr; margin: 0; min-height: 100vh; padding: 40px 0; place-items: center; background-image: radial-gradient(#1e293b 1.5px, transparent 1.5px); background-size: 30px 30px; }
+        .slide-container { align-items: center; background-color: #1e293b; border-radius: 24px; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4); display: flex; flex-direction: column; font-family: 'Montserrat', 'Noto Sans KR', sans-serif; height: 720px; justify-content: center; overflow: hidden; padding: 70px 80px; position: relative; width: 1280px; }
+        .slide-container::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc); z-index: 2; }
+        
+        /* 2. TYPOGRAPHY */
+        .slide-container h1, .slide-container h2, .slide-container h3 { color: #f8fafc; font-weight: 700; letter-spacing: -0.5px; margin: 0; }
+        .slide-container p, .slide-container li, .slide-container .subtitle, .slide-container td { color: #cbd5e1; font-size: 20px; line-height: 1.6; font-weight: 400; letter-spacing: -0.3px; }
+        .slide-container h1 { font-size: 66px; line-height: 1.3; margin-bottom: 20px; }
+        .slide-container .subtitle { font-size: 24px; color: #38bdf8; font-weight: 500; }
+        .slide-container .slide-title { font-size: 42px; font-weight: 700; margin-bottom: 50px; text-align: left; width: 100%; position: relative; color: #f8fafc; }
+        .slide-container .slide-title::after { content: ''; position: absolute; left: 0; bottom: -15px; width: 60px; height: 4px; background: #38bdf8; border-radius: 2px; }
+        .slide-container .content-area { display: flex; flex-direction: column; flex-grow: 1; justify-content: center; width: 100%; }
+        
+        /* 3. LAYOUTS */
+        .title-layout { text-align: center; }
+        .section-title-layout { text-align: center; }
+        .section-title-layout h2 { font-size: 56px; color: #f8fafc; }
+        .section-title-layout p { color: #38bdf8; font-size: 24px; font-weight: 500; margin-top: 20px; }
+        .section-title-layout hr { border: none; height: 4px; width: 80px; background: #38bdf8; border-radius: 2px; margin: 0 auto 35px; }
+        
+        .two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; width: 100%; }
+        .two-column.tiled > div { background: #0f172a; border-radius: 16px; border: 1px solid #334155; padding: 35px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .two-column.tiled > div:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.4); }
+        .two-column.tiled h3 { color: #f8fafc; margin-bottom: 15px; font-size: 24px; }
+        .two-column.tiled p, .tile p { font-size: 18px; color: #94a3b8; }
+        
+        .image-wrapper { border-radius: 16px; overflow: hidden; height: 380px; box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
+        .image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .tiled-content { display: flex; gap: 30px; width: 100%; }
+        .tile { background: #0f172a; border-radius: 16px; border: 1px solid #334155; flex: 1; padding: 40px 30px; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .tile:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.4); }
+        .tile .icon { font-size: 42px; color: #38bdf8; margin-bottom: 25px; }
+        .tile h3 { font-size: 24px; margin-bottom: 15px; }
+        
+        .table-layout table { width: 100%; border-collapse: collapse; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+        .table-layout th { background: #0f172a; color: #f8fafc; padding: 20px; text-align: left; font-weight: 600; border-bottom: 2px solid #334155; font-size: 20px; }
+        .table-layout td { padding: 20px; border-bottom: 1px solid #334155; background: transparent; }
+        
+        .timeline-layout { display: flex; justify-content: space-between; position: relative; width: 100%; height: 300px; margin-top: 60px; }
+        .timeline-line { position: absolute; top: 50%; left: 0; width: 100%; height: 2px; background: #475569; z-index: 0; }
+        .timeline-item { width: 22%; position: relative; z-index: 1; text-align: center; }
+        .timeline-item::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 16px; height: 16px; background: #1e293b; border: 3px solid #38bdf8; border-radius: 50%; box-shadow: 0 0 0 6px rgba(56, 189, 248, 0.15); }
+        .timeline-item .content-wrapper { position: absolute; width: 100%; }
+        .timeline-item:nth-child(odd) .content-wrapper { bottom: 65%; }
+        .timeline-item:nth-child(even) .content-wrapper { top: 65%; }
+        .timeline-item h3 { font-size: 24px !important; margin-bottom: 10px; }
+        .timeline-item p { font-size: 18px; }
+        
+        .highlight-numbers-layout { display: flex; align-items: center; gap: 60px; }
+        .highlight-numbers-layout .number { font-size: 140px; font-weight: 700; color: transparent; -webkit-text-stroke: 2px #38bdf8; opacity: 0.3; line-height: 1; }
+        .highlight-numbers-layout .number-label { font-size: 28px; font-weight: 700; color: #f8fafc; margin-top: -30px; padding-left: 10px; }
+        
+        .bullet-list ul { list-style: none; padding: 0; }
+        .bullet-list li { position: relative; padding-left: 40px; margin-bottom: 20px; font-size: 20px; }
+        .bullet-list i { position: absolute; left: 0; top: 6px; color: #38bdf8; font-size: 20px; }
+        
+        .qa-layout { text-align: center; width: 100%; }
+        .qa-layout h2 { font-size: 48px; margin-bottom: 20px; color: #f8fafc; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide1">
+        <div class="title-layout">
+            <h1>스마트 일본 여행 프로젝트<br>운영 자동화 매뉴얼</h1>
+            <p class="subtitle">5인 미만 소정예 팀을 위한 슬랙 &amp; 구글워크스페이스 기반 B2B 운영 전략</p>
+        </div>
+    </div>
+
+    <div class="slide-container" id="slide2">
+        <div class="section-title-layout">
+            <hr>
+            <h2>01. 통합 운영 인프라</h2>
+            <p>Inquiry → Alert → Database → Field Reporting</p>
+        </div>
+    </div>
+
+    <div class="slide-container" id="slide3">
+        <h2 class="slide-title">핵심 관리 도구 셋업</h2>
+        <div class="content-area">
+            <div class="two-column tiled">
+                <div>
+                    <h3>Input: 구글 폼 (Google Forms)</h3>
+                    <p>한국 여행사의 모든 의뢰를 정형화된 양식으로 접수합니다. 재질의가 필요 없는 '필수 체크리스트' 기반의 문항 설계로 정보 누락을 원천 차단합니다.</p>
+                </div>
+                <div>
+                    <h3>Notification: 슬랙 (Slack)</h3>
+                    <p>의뢰 접수부터 현지 수배, 가이드 보고까지 모든 소통의 허브입니다. Zapier 연동을 통해 실시간 알림 시스템을 구축하여 즉각적인 대응을 지원합니다.</p>
+                </div>
+            </div>
+            <div class="two-column tiled" style="margin-top: 20px;">
+                <div>
+                    <h3>Database: 구글 시트 (Sheets)</h3>
+                    <p>모든 프로젝트 히스토리가 자동으로 누적되는 마스터 DB입니다. 필터링과 검색을 통해 언제든 과거 견적과 수배 내역을 1초 만에 조회할 수 있습니다.</p>
+                </div>
+                <div>
+                    <h3>Storage: 구글 드라이브 (Drive)</h3>
+                    <p>최종 견적서, 바우처 등 모든 파일을 링크 형태로 관리합니다. 카카오톡의 파일 만료 문제에서 완전히 벗어나 영구적인 문서 자산화를 실현합니다.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-container" id="slide4">
+        <h2 class="slide-title">표준 업무 워크플로우</h2>
+        <div class="content-area">
+            <div class="timeline-layout">
+                <div class="timeline-line"></div>
+                <div class="timeline-item">
+                    <div class="content-wrapper">
+                        <h3 style="font-size:24px;">의뢰 (Inquiry)</h3>
+                        <p>여행사 담당자가 공지된 구글 폼으로 상세 수배 의뢰</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="content-wrapper">
+                        <h3 style="font-size:24px;">수배 (Search)</h3>
+                        <p>슬랙 알림 확인 후 현지 중계사/업체와 가부 확인 및 견적 산출</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="content-wrapper">
+                        <h3 style="font-size:24px;">확정 (Execution)</h3>
+                        <p>최종 바우처 발행 및 현지 가이드 배정 및 오리엔테이션</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="content-wrapper">
+                        <h3 style="font-size:24px;">정산 (Settlement)</h3>
+                        <p>행사 종료 후 가이드 정산 및 결제 당일 환율 기준 입금 확인</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-container" id="slide5">
+        <h2 class="slide-title">Step 1: 정보의 규격화 (Input)</h2>
+        <div class="content-area">
+            <div class="two-column tiled">
+                <div>
+                    <h3><i class="fa-solid fa-pen-to-square" style="color: #38bdf8; margin-right: 10px;"></i>스마트 접수 시스템</h3>
+                    <div class="bullet-list" style="margin-top: 20px;">
+                        <ul>
+                            <li><i class="fa-solid fa-check-circle"></i> <strong>표준 양식 제공:</strong> 구글 폼을 활용하여 여행사별 산발적인 의뢰를 하나의 규격화된 포맷으로 통일합니다.</li>
+                            <li><i class="fa-solid fa-link"></i> <strong>접근성 극대화:</strong> 거래처별 슬랙(Slack) 채널 상단 북마크에 폼 링크를 고정하여 언제든 즉시 의뢰 가능합니다.</li>
+                            <li><i class="fa-solid fa-ban"></i> <strong>휴먼 에러 차단:</strong> 재질의가 필요 없도록 설계된 필수 문항을 통해 커뮤니케이션 비용을 최소화합니다.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <h3><i class="fa-solid fa-database" style="color: #38bdf8; margin-right: 10px;"></i>필수 데이터 추출 및 연동</h3>
+                    <div class="bullet-list" style="margin-top: 20px;">
+                        <ul>
+                            <li><i class="fa-solid fa-list-check"></i> <strong>핵심 수집 항목:</strong> 행사 성격(연수/VIP/FIT), 상세 일정, 인원, 확정 항공편, 인당 예산을 필수로 수집합니다.</li>
+                            <li><i class="fa-solid fa-file-export"></i> <strong>즉시 DB화:</strong> 제출과 동시에 구글 시트 마스터 DB에 행(Row) 단위로 자동 기록되어 수기 입력이 불필요합니다.</li>
+                            <li><i class="fa-solid fa-bolt"></i> <strong>자동화 트리거:</strong> 폼 제출 완료 즉시 Zapier가 이를 감지하여 '실시간 알림' 워크플로우를 작동시킵니다.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-container" id="slide6">
+        <h2 class="slide-title">Step 2: 실시간 대응 (Notification)</h2>
+        <div class="content-area">
+            <div class="tiled-content">
+                <div class="tile">
+                    <div class="icon"><i class="fa-solid fa-bolt"></i></div>
+                    <h3>실시간 슬랙 알림</h3>
+                    <p>Zapier를 통해 구글 폼 응답을 슬랙 카드 형태로 즉시 전송합니다. 팀원 모두가 동시에 의뢰를 확인합니다.</p>
+                </div>
+                <div class="tile">
+                    <div class="icon"><i class="fa-solid fa-comments"></i></div>
+                    <h3>스레드(Thread) 관리</h3>
+                    <p>개별 행사 관련 대화는 해당 알림 메시지의 '댓글'에서만 진행하여 대화 흐름의 파편화를 방지합니다.</p>
+                </div>
+                <div class="tile">
+                    <div class="icon"><i class="fa-solid fa-check-double"></i></div>
+                    <h3>이모지 승인</h3>
+                    <p>확인(👀), 진행중(⏳), 완료(✅) 이모지를 사용하여 불필요한 텍스트 답변 없이 업무 상태를 공유합니다.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-container" id="slide7">
+        <h2 class="slide-title">Step 3: 데이터 마스터 (DB)</h2>
+        <div class="content-area">
+            <div class="table-layout">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>항목 (DB Columns)</th>
+                            <th>설명</th>
+                            <th>비고</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Project ID</td>
+                            <td>YYMMDD-여행사명-지역 (예: 260710-OO투어-오사카)</td>
+                            <td>고유 식별자</td>
+                        </tr>
+                        <tr>
+                            <td>진행 상태</td>
+                            <td>의뢰접수 / 수배중 / 견적발송 / 확정 / 정산완료</td>
+                            <td>드롭다운 관리</td>
+                        </tr>
+                        <tr>
+                            <td>최종 바우처 링크</td>
+                            <td>구글 드라이브 내 해당 파일 고유 URL</td>
+                            <td>영구 보존</td>
+                        </tr>
+                        <tr>
+                            <td>환율 적용가</td>
+                            <td>송금일 기준 TTS 환율 자동 계산 수식 적용</td>
+                            <td>정산 정확도</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-container" id="slide8">
+        <div class="section-title-layout">
+            <hr>
+            <h2>02. 실전 업무 시나리오</h2>
+            <p>5인 미만 소정예 팀의 현장 대응 가이드</p>
+        </div>
+    </div>
+
+    <div class="slide-container" id="slide9">
+        <h2 class="slide-title">Scenario A: 신규 수배 및 견적</h2>
+        <div class="content-area">
+            <div class="two-column tiled">
+                <div>
+                    <h3>1단계: 수배 착수 및 공유</h3>
+                    <p>슬랙 알림 확인 후 담당자가 '👀' 반응을 남깁니다. 일본 중계사에게 가부 확인 메일을 보내고 슬랙 스레드에 "호텔 확인 중 - 15시 회신 예정"이라고 남깁니다.</p>
+                </div>
+                <div>
+                    <h3>2단계: 견적서 및 리스크 관리</h3>
+                    <p>확인된 금액을 바탕으로 '표준 견적서'를 발행합니다. 하단에 유효기간, 불포함 사항, 취소 규정을 명시하여 법적/금전적 리스크를 사전에 차단합니다.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-container" id="slide10">
+        <h2 class="slide-title">Scenario B: 현장 케어 및 보고</h2>
+        <div class="content-area">
+            <div class="highlight-numbers-layout">
+                <div>
+                    <div class="number">100%</div>
+                    <div class="number-label">현지 가시성 확보</div>
+                </div>
+                <div>
+                    <h3>가이드 실시간 보고 매뉴얼</h3>
+                    <div class="bullet-list">
+                        <ul>
+                            <li><i class="fa-solid fa-user-check"></i> <strong>미팅 보고:</strong> 가이드 성함/연락처, 차량 번호, 미팅 완료 여부를 슬랙 #03_현장_케어 채널에 즉시 업로드.</li>
+                            <li><i class="fa-solid fa-cloud-sun"></i> <strong>상황 보고:</strong> 현지 날씨, 도로 정체, 일정 변경 이슈 발생 시 즉각 스레드에 멘션(@팀장)하여 실시간 모니터링.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-container" id="slide11">
+        <h2 class="slide-title">전문가급 유지관리 팁</h2>
+        <div class="content-area">
+            <div class="bullet-list">
+                <ul>
+                    <li><i class="fa-solid fa-file-zipper"></i> <strong>파일 만료 방지:</strong> 모든 최종 견적서와 바우처는 슬랙에 직접 올리지 않고, 구글 드라이브 폴더 링크로만 공유하여 영구 보존합니다.</li>
+                    <li><i class="fa-solid fa-magnifying-glass"></i> <strong>검색의 생활화:</strong> 슬랙의 검색 기능(`has:link`, `from:@가이드`)을 활용하여 과거의 유사 수배 사례와 견적 데이터를 5초 내에 찾아 활용합니다.</li>
+                    <li><i class="fa-solid fa-calendar-check"></i> <strong>예약 메시지 활용:</strong> 가이드에게 전달할 익일 지시 사항은 슬랙의 '메시지 예약' 기능을 사용하여 매너 있는 시간에 자동 발송되도록 설정합니다.</li>
+                    <li><i class="fa-solid fa-shield-halved"></i> <strong>권한 관리:</strong> 외부 중계사는 슬랙의 '멀티 채널 게스트'로 초대하여 보안을 유지하고 소통 창구를 일원화합니다.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-container" id="slide12">
+        <div class="qa-layout">
+            <h2>질의응답 및 지원</h2>
+            <p>프로세스 구축 및 툴 연동에 대한 모든 궁금증을 해결해 드립니다.</p>
+            <div style="margin-top:50px; font-weight:700; color:#38bdf8; font-size:22px;">
+                Slack Workspace: @Admin | Ops Master: Google Sheets Integrated
+            </div>
+        </div>
+    </div>
+</body>
+</html>
